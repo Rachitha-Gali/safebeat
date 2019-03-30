@@ -1,66 +1,68 @@
-# Python code to illustrate Sending mail with attachments 
-# from your Gmail account 
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
-# libraries to be imported 
-import smtplib 
-from email.mime.multipart import MIMEMultipart 
-from email.mime.text import MIMEText 
-from email.mime.base import MIMEBase 
-from email import encoders 
+def notify_doctor():
+    # Python code to illustrate Sending mail with attachments
+    # from your Gmail account
 
-fromaddr = "safebeat.hackkosice2019@gmail.com"
-toaddr = "safebeat.hackkosice2019@gmail.com"
+    # libraries to be imported
 
-# instance of MIMEMultipart 
-msg = MIMEMultipart() 
+    fromaddr = "safebeat.hackkosice2019@gmail.com"
+    toaddr = "safebeat.hackkosice2019@gmail.com"
 
-# storing the senders email address 
-msg['From'] = fromaddr 
+    # instance of MIMEMultipart
+    msg = MIMEMultipart()
 
-# storing the receivers email address 
-msg['To'] = toaddr 
+    # storing the senders email address
+    msg['From'] = fromaddr
 
-# storing the subject 
-msg['Subject'] = "Subject of the Mail"
+    # storing the receivers email address
+    msg['To'] = toaddr
 
-# string to store the body of the mail 
-body = "Body_of_the_mail"
+    # storing the subject
+    msg['Subject'] = "Subject of the Mail"
 
-# attach the body with the msg instance 
-msg.attach(MIMEText(body, 'plain')) 
+    # string to store the body of the mail
+    body = "Body_of_the_mail"
 
-# open the file to be sent 
-filename = "black.png"
-attachment = open("C:/Users/arun.ramachandran/Desktop/", "rb") 
+    # attach the body with the msg instance
+    msg.attach(MIMEText(body, 'plain'))
 
-# instance of MIMEBase and named as p 
-p = MIMEBase('application', 'octet-stream') 
+    # open the file to be sent
+    filename = "black.png"
+    attachment = open("C:/Users/arun.ramachandran/Desktop/", "rb")
 
-# To change the payload into encoded form 
-p.set_payload((attachment).read()) 
+    # instance of MIMEBase and named as p
+    p = MIMEBase('application', 'octet-stream')
 
-# encode into base64 
-encoders.encode_base64(p) 
+    # To change the payload into encoded form
+    p.set_payload((attachment).read())
 
-p.add_header('Content-Disposition', "attachment; filename= %s" % filename) 
+    # encode into base64
+    encoders.encode_base64(p)
 
-# attach the instance 'p' to instance 'msg' 
-msg.attach(p) 
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 
-# creates SMTP session 
-s = smtplib.SMTP('smtp.gmail.com', 587) 
+    # attach the instance 'p' to instance 'msg'
+    msg.attach(p)
 
-# start TLS for security 
-s.starttls() 
+    # creates SMTP session
+    s = smtplib.SMTP('smtp.gmail.com', 587)
 
-# Authentication 
-s.login(fromaddr, "********") 
+    # start TLS for security
+    s.starttls()
 
-# Converts the Multipart msg into a string 
-text = msg.as_string() 
+    # Authentication
+    s.login(fromaddr, "********")
 
-# sending the mail 
-s.sendmail(fromaddr, toaddr, text) 
+    # Converts the Multipart msg into a string
+    text = msg.as_string()
 
-# terminating the session 
-s.quit() 
+    # sending the mail
+    s.sendmail(fromaddr, toaddr, text)
+
+    # terminating the session
+    s.quit()
