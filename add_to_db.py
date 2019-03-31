@@ -28,7 +28,7 @@ def notify_doctor():
     msg['To'] = toaddr
 
     # storing the subject
-    msg['Subject'] = "Subject of the Mail"
+    msg['Subject'] = "Heart Rate Anomaly detected"
 
     # string to store the body of the mail
     body = "Body_of_the_mail"

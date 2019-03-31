@@ -4,7 +4,7 @@ import add_to_db
 print("wereg")
 
 TCP_IP = '127.0.0.1'
-TCP_PORT = 5012
+TCP_PORT = 5013
 BUFFER_SIZE = 1024  # Normally 1024, but we want fast response
 
 
