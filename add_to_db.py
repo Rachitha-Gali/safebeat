@@ -108,5 +108,3 @@ def plot_data():
         y[i] = float(y[i])
     plt.plot(x[1:], y[1:])
     plt.savefig('chart.png')
-
-new_record()

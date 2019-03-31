@@ -14,7 +14,7 @@
   }
 
   function doWork() {
-    var connection = new WebSocket('ws://127.0.0.1:5005');
+    var connection = new WebSocket('ws://127.0.0.1:5012');
     connection.onopen = function () {
       connection.send('Ping'); // Send the message 'Ping' to the server
     };
